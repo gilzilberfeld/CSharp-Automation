@@ -13,9 +13,4 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Exercises\" />
-    <Folder Include="Solutions\" />
-  </ItemGroup>
-
 </Project>

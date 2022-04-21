@@ -14,15 +14,15 @@
 
         public static string GetPersonXML()
         {
-            return "<Person>\n" +
-                    "  <FirstName>Joe</FirstName>\n" +
-                    "  <SurName>Smith</SurName>\n" +
-                    "  <Children>\n" +
-                    "    <Child name=\"Jane\"/>\n" +
-                    "    <Child name=\"Jim\"/>\n" +
-                    "    <Child name=\"JJ\"/>\n" +
-                    "  </Children>  \n" +
-                    "</Person>";
+            return @"<Person>
+                        <FirstName>Joe</FirstName>
+                        <SurName>Smith</SurName>
+                        <Children>
+                            <Child name='Jane'/>
+                            <Child name='Jim'/>
+                            <Child name='JJ'/>
+                        </Children>
+                    </Person>";
         }
     }
 }

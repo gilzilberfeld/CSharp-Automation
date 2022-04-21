@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Exercises\e04.Xml\BeatlesXMLTests.cs">
+    <Compile Update="Exercises\e04.XML\BeatlesXMLTests.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Solutions\e04.XML\BeatlesXMLTests.cs">
@@ -24,7 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Exercises\e04.Xml\Beatles.xml">
+    <None Update="Exercises\e04.XML\Beatles.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Exercises\e05.JSON\Beatles.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

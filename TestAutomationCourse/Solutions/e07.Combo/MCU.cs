@@ -27,5 +27,5 @@ namespace TestAutomationCourse.Solutions.e07.Combo
             characters.Add(character);
             return this;
         }
-    }
+    }   
 }

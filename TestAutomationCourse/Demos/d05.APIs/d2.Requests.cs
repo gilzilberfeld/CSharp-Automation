@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using RestSharp;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace TestAutomationCourse.Demos.d05.APIs
@@ -44,14 +45,16 @@ namespace TestAutomationCourse.Demos.d05.APIs
                                 'body': 'bar',
                                 'userId': 1
                                 }";
+
             RestClient client =
-                new RestClient("http://jsonplaceholder.typicode.com/");
+                new RestClient("http://jsonplaceholder.typicode.com/posts");
             RestRequest request = new RestRequest();
-            request.AddJsonBody(newPost);
 
-            var response = await client.GetAsync(request);
+            request.AddParameter("application/json", newPost, 
+                ParameterType.RequestBody);
+            var response = await client.PostAsync(request);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
     }
 }

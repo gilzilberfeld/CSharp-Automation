@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Collections.ObjectModel;
 
 namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
 {
@@ -39,6 +40,21 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
             IWebElement site_encryption_label = driver.FindElement(By.XPath(
                 ".//*[starts-with(., 'sit')]"));
             Assert.That(site_encryption_label.Text, Is.EqualTo("Site Encryption"));
+        }
+
+        [Test]
+        public void count_bullets()
+        {
+            driver.Url = "http://www.duckduckgo.com";
+            ReadOnlyCollection<IWebElement> bullets = driver.FindElements(By.ClassName(
+                "badge-link__bullet"));
+            Assert.That(bullets.Count, Is.EqualTo(3));
+
+            IWebElement bullet_list = driver.FindElement(By.ClassName(
+                "badge-link__bullets"));
+            var bullet_tags = bullet_list.FindElements(By.TagName("li"));
+            Assert.That(bullet_tags.Count, Is.EqualTo(3));
+
         }
 
         [Test]

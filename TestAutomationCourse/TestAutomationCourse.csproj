@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Demos\d06.Web\TextFile1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Exercises\e04.XML\Beatles.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -28,8 +28,7 @@ namespace TestAutomationCourse.Demos.d01.Nunit
         } 
 
         [TestCaseSource(nameof(FactorialCases))]
-
-        public void FactorialTests_FromSource(int input, int expected)
+                public void FactorialTests_FromSource(int input, int expected)
         {
             Factorial factorial = new Factorial();
             Assert.AreEqual(expected, factorial.Calculate(input));

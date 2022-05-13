@@ -30,7 +30,6 @@ namespace TestAutomationCourse.Exercises.e08.API
 
         }
 
-        // use body("Y", hasItem(X)); to find if the ID was added.
         [Test]
         public void create_todo_and_check_if_added_to_todos()
         {

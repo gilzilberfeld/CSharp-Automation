@@ -3,7 +3,7 @@
 namespace TestAutomationCourse.Demos.d01.Nunit
 {
     [TestFixture]
-    internal class FactorialFixtureTestscs
+    internal class FactorialFixtureTests
     {
         Factorial factorial;
 
@@ -12,6 +12,7 @@ namespace TestAutomationCourse.Demos.d01.Nunit
         {
             factorial = new Factorial();
         }
+
 
         [Test]
         public void Factorial_Tests()

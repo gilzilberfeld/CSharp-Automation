@@ -52,16 +52,6 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
             Assert.That(driver.Title, Does.Contain("automation"));
         }
 
-        [Test]
-        public void find_active_element()
-        {
-            driver.Url = "http://www.duckduckgo.com";
-            IWebElement search_input = driver.FindElement(By.CssSelector(
-                "[name='q']"));
-            search_input.SendKeys("automation");
-            IWebElement search_input2 = driver.SwitchTo().ActiveElement();
-            Assert.That(search_input2, Is.EqualTo(search_input));
-        }
 
         [TearDown]
         public void close_browser()

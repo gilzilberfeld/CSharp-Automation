@@ -2,9 +2,8 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.IO;
+using System.Threading;
 
 namespace TestAutomationCourse.Demos.d06.Web
 {
@@ -47,6 +46,28 @@ namespace TestAutomationCourse.Demos.d06.Web
         }
 
         [Test]
+        public void execute_script_and_close_alert()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            driver.Url = "http://demo.guru99.com/V4/";
+
+            IWebElement button = driver.FindElement(By.Name("btnLogin"));
+
+            //Login to Guru99 		
+            driver.FindElement(By.Name("uid")).SendKeys("mngr34926");
+            driver.FindElement(By.Name("password")).SendKeys("amUpenu");
+
+
+            //Perform Click on LOGIN button. Shows an alert.		
+            js.ExecuteScript("arguments[0].click();", button);
+
+            //Close alert
+            IAlert alert = driver.SwitchTo().Alert();
+            alert.Accept();
+        }
+
+
+        [Test]
         public void screen_shot()
         {
             driver.Url = "https://demo.guru99.com/test/newtours/register.php";
@@ -56,46 +77,12 @@ namespace TestAutomationCourse.Demos.d06.Web
             ss.SaveAsFile(@".//Image.png", ScreenshotImageFormat.Png);
         }
 
-        [Test]
-        public void upload_files_and_wait_for_message()
-        {
-            driver.Url = "http://demo.guru99.com/test/upload/";
-            IWebElement uploadElement = driver.FindElement(By.Id("uploadfile_0"));
-
-            string path = Path.Combine(Environment.CurrentDirectory, @".//Demos//d06.Web//TextFile1.txt");
-            uploadElement.SendKeys(path);
-            driver.FindElement(By.Id("terms")).Click();
-            driver.FindElement(By.Name("send")).Click();
-            WaitForMessageToDisplay();
-
-            IWebElement message = driver.FindElement(
-                By.XPath(".//center[contains(text(), '1 file')]"));
-
-            Assert.That(message.Text, Does.Contain("1 file") 
-                & Does.Contain("successfully"));
-        }
-
-        private void WaitForMessageToDisplay()
-        {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            Func<IWebDriver, bool> isMessageDisplayed =
-            d =>
-            {
-                IWebElement e = d.FindElement(By.XPath(".//center[contains(text(), '1 file')]")); ;
-                return e.Displayed && e.Enabled;
-            };
-
-            wait.Until(isMessageDisplayed);
-        }
 
         [TearDown]
         public void close_browser()
         {
             driver.Close();
-            if (File.Exists(@".//Image.png"))
-            {
-                File.Delete(@".//Image.png");
-            }
         }
     }
+
 }

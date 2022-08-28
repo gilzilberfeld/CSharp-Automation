@@ -56,7 +56,7 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
         [TearDown]
         public void close_browser()
         {
-            driver.Close();
+            driver.Quit();
         }
 
     }

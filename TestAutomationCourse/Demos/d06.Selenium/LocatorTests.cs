@@ -33,37 +33,33 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
         public void contains_partial_text()
         {
             driver.Url = "http://www.duckduckgo.com";
-            IWebElement tracker_blocking_label = driver.FindElement(By.XPath(
-                ".//span[contains(text(), 'locki')]"));
-            Assert.That(tracker_blocking_label.Text, Is.EqualTo("Tracker Blocking"));
-
-            IWebElement site_encryption_label = driver.FindElement(By.XPath(
-                ".//*[starts-with(., 'sit')]"));
-            Assert.That(site_encryption_label.Text, Is.EqualTo("Site Encryption"));
+            IWebElement simplified_text = driver.FindElement(By.XPath(
+                ".//h1[contains(text(), 'simp')]"));
+            Assert.That(simplified_text.Text, Is.EqualTo("Privacy, simplified."));
         }
 
         [Test]
-        public void count_bullets()
+        public void count_items_in_list()
         {
-            driver.Url = "http://www.duckduckgo.com";
-            ReadOnlyCollection<IWebElement> bullets = driver.FindElements(By.ClassName(
-                "badge-link__bullet"));
-            Assert.That(bullets.Count, Is.EqualTo(3));
+            driver.Url = "https://duckduckgo.com/?q=testing";
+            ReadOnlyCollection<IWebElement> menu_items = driver.FindElements(By.ClassName(
+                "zcm__item"));
+            Assert.That(menu_items.Count, Is.EqualTo(6)); // not all in the same menu
 
-            IWebElement bullet_list = driver.FindElement(By.ClassName(
-                "badge-link__bullets"));
-            var bullet_tags = bullet_list.FindElements(By.TagName("li"));
-            Assert.That(bullet_tags.Count, Is.EqualTo(3));
-
+            IWebElement main_menu = driver.FindElement(By.Id(
+                "duckbar_static"));
+            var main_menu_items = main_menu.FindElements(By.TagName("li"));
+            Assert.That(main_menu_items.Count, Is.EqualTo(5));
+             
         }
 
         [Test]
         public void class_and_relative_xpath()
         {
             driver.Url = "http://www.duckduckgo.com";
-            IWebElement div_element = driver.FindElement(By.ClassName("search-wrap--home"));
+            IWebElement div_element = driver.FindElement(By.ClassName("searchbox_searchbox__eaWKL"));
             IWebElement search_input = div_element.FindElement(By.XPath(
-                ".//input"));
+                "input[@id='searchbox_input']"));
             search_input.SendKeys("automation");
             search_input.Submit();
             Assert.That(driver.Title, Does.Contain("automation"));
@@ -73,16 +69,17 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
         [Test]
         public void click_an_image()
         {
-            driver.Url = "http://www.duckduckgo.com";
-            IWebElement duck_image = driver.FindElement(By.Id("logo_homepage_link"));
-            duck_image.Click();
-            Assert.That(driver.Title, Does.Contain("DuckDuckGo"));
+            driver.Url = "http://imgflip.com";
+            IWebElement logo_image = driver.FindElement(By.Id("logo"));
+            logo_image.Click();
+            Assert.That(driver.Title, Does.Contain("Imgflip"));
         }
 
         
         [Test]
         public void find_active_element()
         {
+           
             driver.Url = "http://www.duckduckgo.com";
             IWebElement search_input = driver.FindElement(By.CssSelector(
                 "[name='q']"));
@@ -93,7 +90,7 @@ namespace TestAutomationCourse.Demos.d06.Web.d1.Basic
         [TearDown]
         public void close_browser()
         {
-            driver.Close();
+            driver.Quit();
         }
 
     }

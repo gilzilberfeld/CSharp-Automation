@@ -52,7 +52,7 @@ namespace TestAutomationCourse.Demos.d06.Web
         [TearDown]
         public void close_browser()
         {
-            driver.Close();
+            driver.Quit();
         }
 
     }

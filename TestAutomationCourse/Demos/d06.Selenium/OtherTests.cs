@@ -35,14 +35,14 @@ namespace TestAutomationCourse.Demos.d06.Web
             IWebElement From = driver.FindElement(By.XPath("//*[@id='credit2']/a"));
             var value_dragged = From.Text;
             IWebElement To = driver.FindElement(By.XPath("//*[@id='bank']/li"));
-            Assert.That(To.Text, Does.Not.EqualTo(value_dragged));
+            string to_text = To.Text;
+            Assert.That(to_text, Does.Not.EqualTo(value_dragged));
+
             Actions action = new Actions(driver);
             action.DragAndDrop(From, To).Build().Perform();
             // need to retake stale element
-            To = driver.FindElement(By.XPath("//*[@id='bank']/li"));
-            Assert.That(To.Text, Is.EqualTo(value_dragged));
-
-
+            IWebElement To2 = driver.FindElement(By.XPath("//*[@id='bank']/li"));
+            Assert.That(To2.Text, Is.EqualTo(value_dragged));
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace TestAutomationCourse.Demos.d06.Web
         [TearDown]
         public void close_browser()
         {
-            driver.Close();
+            driver.Quit();
         }
     }
 

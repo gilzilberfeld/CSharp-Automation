@@ -38,6 +38,7 @@ namespace TestAutomationCourse.Demos.d05.APIs
         }
 
         [Test]
+        [Ignore("Used to pass, now gives Internal Server Error")]
         public async Task Post_with_json_body()
         {
             string newPost = @"{
